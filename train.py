@@ -2,6 +2,8 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 import numpy as np
 from DecisionTree import DecisionTree
+from RandomForest import RandomForest
+
 
 data = datasets.load_breast_cancer()
 X, y = data.data, data.target
@@ -21,4 +23,14 @@ def accuracy(y_test, y_pred):
 
 
 acc = accuracy(y_test, predictions)
-print(acc)
+print("Decision accuracy: ", acc)
+
+
+# Random Forest
+
+clf_1 = RandomForest(n_trees=20)
+clf_1.fit(X_train, y_train)
+
+predictions = clf_1.predict(X_test)
+
+print("Random forest accuracy ", accuracy(y_test, predictions))
